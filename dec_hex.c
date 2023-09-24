@@ -67,8 +67,6 @@ int main()
             {
                 strcat(convertido, "F");
             }
-
-
         }
 
     }

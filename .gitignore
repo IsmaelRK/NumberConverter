@@ -1,3 +1,5 @@
 
 *.xml
 .idea/NumberConverter.iml
+*.exe
+.idea/TESTEGIT.iml

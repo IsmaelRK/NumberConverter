@@ -12,13 +12,14 @@ int oct_dec(char *num_octal);
 int dec_oct(int numero_int);
 
 
-int main(int result_Int, char **charresult_Chr)
+int main()
 {
-    int i = 1, esc, ext = 0;
+    int esc, ext = 0;
     char opr[6][15] = {"Binario", "Decimal", "Hexadecimal", "Decimal", "Octal", "Decimal"};
 
     while (ext == 0)
     {
+        int i = 1;
         printf("\n[%d] Binario -> Decimal", i++);       //Char
         printf("\n[%d] Decimal -> Binario", i++);
         printf("\n[%d] Hexadecimal -> Decimal", i++);   //Char
@@ -33,33 +34,48 @@ int main(int result_Int, char **charresult_Chr)
         if ((esc == 1) || (esc == 3) || (esc == 5))
         {
             char n[50];
+            int res;
             printf("Digite o Numero %s: ", opr[esc-1]);
             scanf("%s", n);
 
             switch (esc) {
 
-                case 1: bin_dec(n); break;
-                case 3: hex_dec(n); break;
-                case 5: oct_dec(n); break;
+                case 1:
+                    res = bin_dec(n);
+                    break;
+                case 3:
+                    res = hex_dec(n);
+                    break;
+                case 5:
+                    res = oct_dec(n);
+                    break;
 
             }
-
-
+            printf("Resultado da Conversao: %d", res);
 
         }
         else
         {
             int n;
+            char res[50];
             printf("Digite o Numero %s: ", opr[esc-1]);
             scanf("%d", &n);
 
             switch (esc) {
 
-                case 2: dec_bin(n); break;
-                case 4: dec_hex(n); break;
-                case 6: dec_oct(n); break;
+                case 2:
+                    *res = dec_bin(n);
+                    break;
+                case 4:
+                    *res = dec_hex(n);
+                    break;
+                case 6:
+                    dec_oct(n);
+                    break;
 
             }
+            printf("Resultado da Conversao: ");
+            puts(res);
         }
     }
 
@@ -84,7 +100,7 @@ int bin_dec(char *bin)
         potencia *= 2;
     }
 
-    printf ("O decimal eh: %d", resultado);
+    return resultado;
 }
 
 int dec_bin(int dec)
@@ -111,6 +127,7 @@ int dec_bin(int dec)
         }
 
         printf("O numero %d em binario eh: %s", num, bin);
+//        return *bin;
     } else {
         printf("O numero deve ser nao negativo");
     }
@@ -147,7 +164,7 @@ int hex_dec(char *hex)
     {
         sum += (lstValues[i]) * (pow(16, i));
     }
-    printf("\nResultado: %d", sum);
+    return sum;
 }
 
 int dec_hex(int vl)
@@ -216,8 +233,7 @@ int dec_hex(int vl)
         }
 
     }
-    printf("Resultado: ");
-    puts(convertido);
+    return *convertido;
 }
 
 int oct_dec(char *num_octal)
@@ -250,7 +266,7 @@ int oct_dec(char *num_octal)
         printf("\n%d", resultado[l]);
     }
 
-    printf("\nNumero em Decimal:%d", resultado_decimal);
+    return resultado_decimal;
 }
 
 int dec_oct(int numero_int)
@@ -271,7 +287,7 @@ int dec_oct(int numero_int)
 
     } while (divisao >= 8);
 
-
+    // Essa gambiarra
     printf("Numero em Octal: ");
     for (j = i - 1; j >= 0; j--)
     {

@@ -17,7 +17,7 @@ int main()
     int esc, ext = 0;
     char opr[6][15] = {"Binario", "Decimal", "Hexadecimal", "Decimal", "Octal", "Decimal"};
 
-    while (ext == 0)
+    while (ext == 0) // [Ismael] Arrumar o while que esta infinito (perguntando ao user se quer continuar)
     {
         int i = 1;
         printf("\n[%d] Binario -> Decimal", i++);       //Char
@@ -54,20 +54,19 @@ int main()
             printf("Resultado da Conversao: %d", res);
 
         }
-        else
+        else  // [Ismael] Retornar e printar
         {
             int n;
-            char res[50];
             printf("Digite o Numero %s: ", opr[esc-1]);
             scanf("%d", &n);
 
             switch (esc) {
 
                 case 2:
-                    *res = dec_bin(n);
+                    dec_bin(n);
                     break;
                 case 4:
-                    *res = dec_hex(n);
+                    dec_hex(n);
                     break;
                 case 6:
                     dec_oct(n);
@@ -75,7 +74,6 @@ int main()
 
             }
             printf("Resultado da Conversao: ");
-            puts(res);
         }
     }
 
@@ -127,7 +125,7 @@ int dec_bin(int dec)
         }
 
         printf("O numero %d em binario eh: %s", num, bin);
-//        return *bin;
+
     } else {
         printf("O numero deve ser nao negativo");
     }

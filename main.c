@@ -285,7 +285,6 @@ int dec_oct(int numero_int)
 
     } while (divisao >= 8);
 
-    // Essa gambiarra
     printf("Numero em Octal: ");
     for (j = i - 1; j >= 0; j--)
     {

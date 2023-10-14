@@ -13,7 +13,7 @@ int main()
      
     do
     {
-
+            
         divisao = numero_int/8;
 
         resultado_octal[i] = divisao%8;

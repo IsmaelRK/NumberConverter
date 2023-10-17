@@ -5,7 +5,7 @@ int main() {
     char bin[100], bin2[100];
     int tam, tam2, i;
 
-    printf("Entre com o numero em binario: ");
+    printf("\nEntre com o numero em binario: ");
     gets(bin);
 
     printf("Entre com outro numero em binario: ");

@@ -10,22 +10,22 @@ int hex_dec(char *hex);
 int dec_hex(int vl);
 int oct_dec(char *num_octal);
 int dec_oct(int numero_int);
+int sub_soma_bin();
 
 int main()
 {
     int esc;
-    /// ext = 0;
     char opr[6][15] = {"Binario", "Decimal", "Hexadecimal", "Decimal", "Octal", "Decimal"};
     char resposta[3];
 
-    do // [Ismael] Arrumar o while que esta infinito (perguntando ao user se quer continuar)
+    do
     {
         int i = 1;
-        printf("\n[%d] Binario -> Decimal", i++); // Char
+        printf("\n[%d] Binario -> Decimal", i++); 
         printf("\n[%d] Decimal -> Binario", i++);
-        printf("\n[%d] Hexadecimal -> Decimal", i++); // Char
+        printf("\n[%d] Hexadecimal -> Decimal", i++); 
         printf("\n[%d] Decimal -> Hexadecimal", i++);
-        printf("\n[%d] Octal -> Decimal", i++); // Char
+        printf("\n[%d] Octal -> Decimal", i++); 
         printf("\n[%d] Decimal -> Octal", i++);
         printf("\n[%d] Soma e subtracao de binarios", i++);
 
@@ -54,7 +54,8 @@ int main()
             }
             printf("Resultado da Conversao: %d", res);
         }
-        else // [Ismael] Retornar e printar
+        
+         if ((esc == 2) || (esc == 4) || (esc == 6))
         {
             int n;
             printf("Digite o Numero %s: ", opr[esc - 1]);
@@ -75,6 +76,20 @@ int main()
             }
         }
 
+        if (esc == 7)
+        {
+            switch (esc)
+            {
+            case 7:
+                sub_soma_bin();
+                break;
+            }
+        }
+
+        if(esc > 7){
+            printf("Escolha invalida!");
+        }
+    
 
         printf("\nDeseja continuar(sim/nao): ");
         scanf("%s", resposta);
@@ -111,7 +126,6 @@ int dec_bin(int dec)
     char bin[100];
     // int num;
     int i = 0;
-
     // num = dec;
 
     if (dec >= 0)
@@ -202,7 +216,7 @@ int dec_hex(int vl)
 
     for (int j = 0; j <= i; j++)
     {
-        // printf("\n%d", restoOrg[j]);
+
 
         if ((restoOrg[j] >= 0) && (restoOrg[j] <= 9))
         {
@@ -238,7 +252,7 @@ int dec_hex(int vl)
             }
         }
     }
-    // return *convertido;
+    
     printf("Resulatado da convercao: %s", convertido);
 }
 
@@ -252,7 +266,7 @@ int oct_dec(char *num_octal)
 
     for (int i = 0; i < tamanho_octal; i++)
     {
-        numero_octal[i] = num_octal[i] - '0'; // chat que fez, transforma char em int
+        numero_octal[i] = num_octal[i] - '0'; 
     }
 
     do
@@ -266,11 +280,6 @@ int oct_dec(char *num_octal)
         resultado_decimal += resultado[t];
         t++;
     } while (t < tamanho_octal);
-
-    /*for (l = 0; l < tamanho_octal; l++)
-    {
-        printf("\n%d", resultado[l]);
-    }*/
 
     return resultado_decimal;
 }
@@ -298,4 +307,103 @@ int dec_oct(int numero_int)
     {
         printf("%d", resultado_octal[j]);
     }
+}
+
+int sub_soma_bin()
+{
+    char bin[100], bin2[100];
+    int tam, tam2, i;
+
+    printf("Entre com o numero em binario: ");
+    scanf("%s", bin);
+
+    printf("Entre com outro numero em binario: ");
+    scanf("%s", bin2);
+
+    strrev(bin);
+    tam = strlen(bin);
+
+    int resultado = 0, potencia = 1;
+
+    for (i = 0; i < tam; i++)
+    {
+        if (bin[i] == '1')
+        {
+            resultado += potencia;
+        }
+        potencia *= 2;
+    }
+
+    strrev(bin2);
+    tam2 = strlen(bin2);
+
+    int resultado2 = 0, potencia2 = 1;
+
+    for (i = 0; i < tam2; i++)
+    {
+        if (bin2[i] == '1')
+        {
+            resultado2 += potencia2;
+        }
+        potencia2 *= 2;
+    }
+
+    int soma_dec, sub_dec;
+    char bin3[100], bin4[100];
+
+    soma_dec = resultado + resultado2;
+    sub_dec = resultado - resultado2;
+
+    i = 0;
+    if (soma_dec >= 0)
+    {
+        if (soma_dec == 0)
+        {
+            strcpy(bin3, "0");
+        }
+        else
+        {
+            while (soma_dec > 0)
+            {
+                int resto = soma_dec % 2;
+                bin3[i] = resto + '0';
+                soma_dec = soma_dec / 2;
+                i++;
+            }
+            bin3[i] = '\0';
+            strrev(bin3);
+        }
+    }
+    else
+    {
+        strcpy(bin3, "Numero negativo");
+    }
+
+    i = 0;
+    if (sub_dec >= 0)
+    {
+        if (sub_dec == 0)
+        {
+            strcpy(bin4, "0");
+        }
+        else
+        {
+            while (sub_dec > 0)
+            {
+                int resto = sub_dec % 2;
+                bin4[i] = resto + '0';
+                sub_dec = sub_dec / 2;
+                i++;
+            }
+            bin4[i] = '\0';
+            strrev(bin4);
+        }
+    }
+    else
+    {
+        strcpy(bin4, "Numero negativo");
+    }
+
+    printf("Soma: %s\n", bin3);
+    printf("Subtracao: %s\n", bin4);
 }

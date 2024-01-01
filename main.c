@@ -15,17 +15,18 @@ int sub_soma_bin();
 int main()
 {
     int esc;
+
     char opr[6][15] = {"Binario", "Decimal", "Hexadecimal", "Decimal", "Octal", "Decimal"};
     char resposta[3];
 
     do
     {
         int i = 1;
-        printf("\n[%d] Binario -> Decimal", i++); 
+        printf("\n[%d] Binario -> Decimal", i++); // Char
         printf("\n[%d] Decimal -> Binario", i++);
-        printf("\n[%d] Hexadecimal -> Decimal", i++); 
+        printf("\n[%d] Hexadecimal -> Decimal", i++); // Char
         printf("\n[%d] Decimal -> Hexadecimal", i++);
-        printf("\n[%d] Octal -> Decimal", i++); 
+        printf("\n[%d] Octal -> Decimal", i++); // Char
         printf("\n[%d] Decimal -> Octal", i++);
         printf("\n[%d] Soma e subtracao de binarios", i++);
 
@@ -54,8 +55,8 @@ int main()
             }
             printf("Resultado da Conversao: %d", res);
         }
-        
-         if ((esc == 2) || (esc == 4) || (esc == 6))
+
+         if((esc == 2) || (esc == 4) || (esc == 6))
         {
             int n;
             printf("Digite o Numero %s: ", opr[esc - 1]);
@@ -83,13 +84,11 @@ int main()
             case 7:
                 sub_soma_bin();
                 break;
+
+            default:
+                printf("Opicao invalida!");
             }
         }
-
-        if(esc > 7){
-            printf("Escolha invalida!");
-        }
-    
 
         printf("\nDeseja continuar(sim/nao): ");
         scanf("%s", resposta);
@@ -124,9 +123,10 @@ int dec_bin(int dec)
 {
 
     char bin[100];
-    // int num;
+
     int i = 0;
-    // num = dec;
+
+
 
     if (dec >= 0)
     {
@@ -216,7 +216,7 @@ int dec_hex(int vl)
 
     for (int j = 0; j <= i; j++)
     {
-
+        // printf("\n%d", restoOrg[j]);
 
         if ((restoOrg[j] >= 0) && (restoOrg[j] <= 9))
         {
@@ -252,7 +252,7 @@ int dec_hex(int vl)
             }
         }
     }
-    
+
     printf("Resulatado da convercao: %s", convertido);
 }
 
@@ -266,7 +266,7 @@ int oct_dec(char *num_octal)
 
     for (int i = 0; i < tamanho_octal; i++)
     {
-        numero_octal[i] = num_octal[i] - '0'; 
+        numero_octal[i] = num_octal[i] - '0';
     }
 
     do
@@ -280,6 +280,8 @@ int oct_dec(char *num_octal)
         resultado_decimal += resultado[t];
         t++;
     } while (t < tamanho_octal);
+
+
 
     return resultado_decimal;
 }
@@ -314,7 +316,7 @@ int sub_soma_bin()
     char bin[100], bin2[100];
     int tam, tam2, i;
 
-    printf("Entre com o numero em binario: ");
+    printf("\nEntre com o numero em binario: ");
     scanf("%s", bin);
 
     printf("Entre com outro numero em binario: ");
